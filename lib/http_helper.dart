@@ -89,45 +89,45 @@ class HomePageManager {
   }
 
 /* Delete item */
-  Future<void> deleteItem() async {
-    resultNotifier.value = RequestLoadInProgress();
-    Response response = await http.delete(
-      Uri.parse('http://192.168.1.8:1337/api/items/'), //edit filter
-    );
-    print('Status code: ${response.statusCode}');
-    print('Deleted item: ${response.body}');
-    _handleResponse(response);
-  }
+  // Future<void> deleteItem() async {
+  //   resultNotifier.value = RequestLoadInProgress();
+  //   Response response = await http.delete(
+  //     Uri.parse('http://192.168.1.8:1337/api/items/'), //edit filter
+  //   );
+  //   print('Status code: ${response.statusCode}');
+  //   print('Deleted item: ${response.body}');
+  //   _handleResponse(response);
+  // }
 
 /* Update item */
-  Future updateItem(propertyNum, description, acquisitionDate, estimatedLife,
-      officeDesignation, serialNum) async {
-    resultNotifier.value = RequestLoadInProgress();
-    const updateEndpoint = 'http://192.168.1.8:1337/api/items/'; //editonon pa
-    var url = Uri.parse(updateEndpoint);
+  // Future updateItem(propertyNum, description, acquisitionDate, estimatedLife,
+  //     officeDesignation, serialNum) async {
+  //   resultNotifier.value = RequestLoadInProgress();
+  //   const updateEndpoint = 'http://192.168.1.8:1337/api/items/'; //editonon pa
+  //   var url = Uri.parse(updateEndpoint);
 
-    Map<String, String> headers = {
-      'Content-Type': 'application/json; charset=UTF-8',
-    };
-    var data = jsonEncode({
-      'data': {
-        'property_no': propertyNum,
-        'description': description,
-        'acquisition_date': acquisitionDate,
-        'estimated_life': estimatedLife,
-        'office_designation': officeDesignation,
-        'brand_serial_no': serialNum,
-      }
-    });
-    var response = await http.put(
-      url,
-      headers: headers,
-      body: data,
-    );
-    print('Status code: ${response.statusCode}');
-    print('Updated item: ${response.body}');
-    _handleResponse(response);
-  }
+  //   Map<String, String> headers = {
+  //     'Content-Type': 'application/json; charset=UTF-8',
+  //   };
+  //   var data = jsonEncode({
+  //     'data': {
+  //       'property_no': propertyNum,
+  //       'description': description,
+  //       'acquisition_date': acquisitionDate,
+  //       'estimated_life': estimatedLife,
+  //       'office_designation': officeDesignation,
+  //       'brand_serial_no': serialNum,
+  //     }
+  //   });
+  //   var response = await http.put(
+  //     url,
+  //     headers: headers,
+  //     body: data,
+  //   );
+  //   print('Status code: ${response.statusCode}');
+  //   print('Updated item: ${response.body}');
+  //   _handleResponse(response);
+  // }
 
 /* Add item */
   // Future addItem(propertyNum, description, acquisitionDate, estimatedLife,

@@ -9,7 +9,7 @@ import 'package:main_menu_page/http_helper.dart';
 class HomePageManager {
   final resultNotifier = ValueNotifier<RequestState>(RequestInitial());
 
-  Future addItem(propertyNum, description, acquisitionDate, estimatedLife,
+  Future addItem(propertyNum, description, acquisitionDate, estimatedLife,      //ADD ITEM
       officeDesignation, serialNum) async {
     resultNotifier.value = RequestLoadInProgress();
     const endpoint = 'http://192.168.1.19:1337/api/items';
@@ -33,8 +33,9 @@ class HomePageManager {
       headers: headers,
       body: data,
     );
+
     print('Status code: ${response.statusCode}');
-    print('Admin users: ${response.body}');
+    print('Item List: ${response.body}');
     _handleResponse(response);
   }
 
@@ -124,7 +125,7 @@ class _MyFormState extends State<MyForm> {
 
   // void getOne() async {
   //   var data =
-  //       await http.get('http://10.10.10.15:1337/api/administrators${this.id}');
+  //       await http.get('http://localhost:1337/api/items${this.id}');
   //   var u = json.decode(data.body);
   //   setState(() {
   //     item = Item(
@@ -227,9 +228,12 @@ class _MyFormState extends State<MyForm> {
                     },
                     child: const Text(
                       'Add Item',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     )),
+
                 // child: MaterialButton(
                 //   onPressed: addItem,
                 //   minWidth: double.infinity,

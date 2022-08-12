@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:main_menu_page/administrator/details.dart';
-import 'package:main_menu_page/data_class.dart';
 import 'package:main_menu_page/http_helper.dart';
 import 'dart:async';
 
@@ -16,33 +14,26 @@ class MyList extends StatefulWidget {
 
 class _MyListState extends State<MyList> {
   final resultNotifier = ValueNotifier<RequestState>(RequestInitial());
-  List<Item> items = [];
-  Future<List<Item>> getItems() async {
-    var data = await http.get(Uri.parse('http://192.168.1.19:1337/api/items'));
-    var jsonData = json.decode(data.body);
-
-    final item = jsonData['data'];
-
-    return item.map((userJson) => Item.fromJson(userJson)).toList();
+  Future getItems()
+  // Future<void> getItems() 
+  async {
+    resultNotifier.value = RequestLoadInProgress();
+    final response = await http.get(
+      Uri.parse('http://localhost:1337/api/items'),
+    );
+    print('Status code: ${response.statusCode}');
+    print('Headers: ${response.headers}');
+    print('Item: ${response.body}');
+    _handleResponse(response);
   }
-  // Future<void> getItems() async {
-  //   resultNotifier.value = RequestLoadInProgress();
-  //   Response response = await http.get(
-  //     Uri.parse('http://localhost:1337/api/items'),
-  //   );
-  //   print('Status code: ${response.statusCode}');
-  //   print('Headers: ${response.headers}');
-  //   print('Items: ${response.body}');
-  //   _handleResponse(response);
-  // }
 
-  // void _handleResponse(Response response) {
-  //   if (response.statusCode >= 400) {
-  //     resultNotifier.value = RequestLoadFailure();
-  //   } else {
-  //     resultNotifier.value = RequestLoadSuccess(response.body);
-  //   }
-  // }
+  void _handleResponse(Response response) {
+    if (response.statusCode >= 400) {
+      resultNotifier.value = RequestLoadFailure();
+    } else {
+      resultNotifier.value = RequestLoadSuccess(response.body);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
