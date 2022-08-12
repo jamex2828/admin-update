@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:main_menu_page/data_class.dart';
-import './main.dart';
+import 'home_main.dart';
 import 'package:http/http.dart' as http;
 
 class MyDetail extends StatefulWidget {
