@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "student_borrowers",
+  "info": {
+    "singularName": "student-borrower",
+    "pluralName": "student-borrowers",
+    "displayName": "student_borrower"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "student_id": {
+      "type": "string"
+    }
+  }
+}
